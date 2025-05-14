@@ -3,6 +3,7 @@ pipeline {
 	environment {
 		DOCKER_IMAGE = 'ambarbhore1234/rmmagent'
 		KUBECONFIG_CRED_ID = 'kubeconfig'
+		DOCKER_TAG = $BUILD_NUMBER
 	}
 	
 	stages {
@@ -20,12 +21,12 @@ pipeline {
 				withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
 					sh '''
 					   echo "Building an docker image : $DOCKER_IMAGE"
-					   docker build -t $DOCKER_IMAGE:rmmagent .
+					   docker build	-t $DOCKER_IMAGE:$DOCKER_TAG .
 						
 					   echo "Logging into the Docker hub"
 				           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin						
 					   echo "pushing image to the docker hub"
-					   docker push $DOCKER_IMAGE:rmmagent
+					   docker push $DOCKER_IMAGE:$DOCKER_TAG
 				        '''
 				}
 			}
