@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rmm-agent1
+      app: rmm-agentt
   template:
     metadata:
       labels:
-        app: rmm-agent1
+        app: rmm-agentt
     spec:
       containers:
       - name: rmm-agent
