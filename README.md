@@ -1,1 +1,1 @@
-# testing-rmm-agent
+# RMM-Agent-3.1
