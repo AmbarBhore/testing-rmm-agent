@@ -31,5 +31,19 @@ pipeline {
 				}
 			}
 		}
+		stage('Deploy to kubernetes') {
+                        steps {
+                                withCredentials([file(credentialsId: "${KUBECONFIG_CRED_ID}", variable: 'KUBECONFIG')]) {
+                                        sh '''
+                                            echo "Applying deployment and service"
+                                            kubectl apply -f k8s/deployment.yaml
+                                            kubectly apply -f k8s/service.yaml
+
+                                            echo "Updating image with the build tag: $BUILD_NUMBER"
+                                            kubectl set image deployment/rmm-agent rmm-agent=$DOCKER_IMAGE:$BUILD_NUMBER --record
+					'''
+				}
+			}
+		}
 	}
 }
