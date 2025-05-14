@@ -3,7 +3,7 @@ pipeline {
 	environment {
 		DOCKER_IMAGE = 'ambarbhore1234/rmmagent'
 		KUBECONFIG_CRED_ID = 'kubeconfig'
-		DOCKER_TAG = $BUILD_NUMBER
+		DOCKER_TAG = '$BUILD_NUMBER'
 	}
 	
 	stages {
