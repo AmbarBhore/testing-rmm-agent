@@ -35,6 +35,11 @@ pipeline {
                         steps {
                                 withCredentials([file(credentialsId: "${KUBECONFIG_CRED_ID}", variable: 'kubeconfig')]) {
                                         sh '''
+					    export KUBECONFIG=$kubeconfig
+						
+					    kubectl config current-context
+					    kubectl get nodes
+						
                                             echo "Applying deployment and service"
                                             kubectl apply -f k8s/deployment.yaml
                                             kubectly apply -f k8s/service.yaml
