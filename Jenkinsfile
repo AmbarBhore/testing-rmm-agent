@@ -25,7 +25,7 @@ pipeline {
 						
 					   echo "Logging into the Docker hub"
 				           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin						
-					   echo "pushing image to the docker hub"
+					   echo "pushing image to the docker hub and updating the tag as well"
 					   docker push $DOCKER_IMAGE:$DOCKER_TAG
 				        '''
 				}
