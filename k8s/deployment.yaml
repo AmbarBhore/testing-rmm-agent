@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rmm-agent
+  name: rmm-agent-deploy
   labels:
     app: rmm-agent
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rmm-agentt
+      app: rmm-agent
   template:
     metadata:
       labels:
-        app: rmm-agentt
+        app: rmm-agent
     spec:
       containers:
       - name: rmm-agent
